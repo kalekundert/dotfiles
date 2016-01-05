@@ -5,20 +5,21 @@ if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
         "@Development Tools"                                \
         "@RPM Development Tools"                            \
         "@C Development Tools and Libraries"                \
-        zsh                                                 \
+        ack                                                 \
+        acpi                                                \
+        python3-devel                                       \
+        python3-scipy                                       \
+        python-devel                                        \
+        python*-matplotlib                                  \
+        python*-numpy                                       \
+        python*-virtualenv                                  \
+        qiv                                                 \
+        sakura                                              \
+        scipy                                               \
+        scrot                                               \
         vim-enhanced                                        \
         vim-X11                                             \
-        sakura                                              \
-        clang                                               \
-        scrot                                               \
-        qiv                                                 \
-        python*-virtualenv                                  \
-        python*-numpy                                       \
-        python*-matplotlib                                  \
-        scipy                                               \
-        python3-scipy                                       \
         xbacklight                                          \
-        python-devel                                        \
-        python3-devel                                       \
+        zsh                                                 \
 
 fi

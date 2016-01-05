@@ -17,11 +17,15 @@ if [ "$EUID" -ne 0 ]; then
 
     ~/.local/bin/pip3 install   \
          --upgrade pip          \
+        bumpversion             \
         cookiecutter            \
-        know_its_ok             \
-        nonstdlib               \
         docopt                  \
-        sh                      \
         ipython                 \
+        know_its_ok             \
+        more_itertools          \
+        nonstdlib               \
+        pytest                  \
+        pytest_cov              \
+        sh                      \
 
 fi
