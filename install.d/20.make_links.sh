@@ -17,4 +17,5 @@ if [ $EUID -ne 0 ]; then
     ln -nsf $INSTALL_DIR/resources/sakura.conf ~/.config/sakura/
     ln -nsf $INSTALL_DIR/resources/gitignore ~/.gitignore
     ln -nsf $INSTALL_DIR/resources/cookiecutterrc ~/.cookiecutterrc
+    ln -nsf $INSTALL_DIR/resources/pypirc ~/.pypirc
 fi
