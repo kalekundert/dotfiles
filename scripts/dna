@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+
+"""\
+Query different aspects of nucleotide sequences.
+
+Usage:
+    dna comp [<sequence>]
+    dna revcomp [<sequence>]
+    dna gc [<sequence>]
+    dna len [<sequence>]
+    dna mw [<sequence>] [--ss]
+
+"""
+
+def complement(sequence):
+    complements = str.maketrans('ACTGactg', 'TGACtgac')
+    return sequence.translate(complements)
+
+def reverse_complement(sequence):
+    return complement(sequence[::-1])
+
+def gc_content(sequence):
+    return sum(x in 'GC' for x in sequence) / len(sequence)
+
+def melting_temp(sequence):
+    pass
+
+def molecular_weight(sequence, double_stranded=True):
+    sequence = sequence.upper()
+
+    a = sequence.count('A')
+    c = sequence.count('C')
+    g = sequence.count('G')
+    t = sequence.count('T')
+
+    if double_stranded:
+        return ((a + t) * 617.4) + ((g + c) * 618.4) - 124
+    else:
+        return (a * 313.2) + (t * 304.2) + (c * 289.2) + (g * 329.2) - 62
+
+
+if __name__ == '__main__':
+    import docopt
+    args = docopt.docopt(__doc__)
+    sequence = args['<sequence>']
+
+    if sequence in (None, '-'):
+        sequence = input()
+
+    if args['comp']:
+        print(complement(sequence))
+    if args['revcomp']:
+        print(reverse_complement(sequence))
+    if args['gc']:
+        print('{:.1f}%'.format(100 * gc_content(sequence)))
+    if args['mw']:
+        print('{:.1f} Da'.format(molecular_weight(sequence, not args['--ss'])))
+    if args['len']:
+        print(len(sequence))
+
+
