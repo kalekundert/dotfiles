@@ -1,5 +1,6 @@
 # General Utilities {{{1
 # =================
+alias edit_aliases='gvim ~/.shell/configure.d/40.aliases.sh'
 alias xx='exec $SHELL'
 alias xrc='source ~/.zshrc'
 alias quit='exit'
@@ -191,15 +192,18 @@ alias mendeley='fork /home/kale/research/software/projects/mendeley/bin/mendeley
 alias mysql-workbench='fork mysql-workbench'
 alias pithos='fork pithos'
 alias pyspread='fork pyspread'
+alias qiv='fork qiv'
 alias quodlibet='fork quodlibet'
 alias rhythmbox='fork rhythmbox'
 alias sakura='fork sakura'
 alias scribus='fork scribus'
 alias skype='fork skype'
+alias snapgene='fork /opt/gslbiotech/snapgene/snapgene.sh'
+alias snapgene-viewer='fork /opt/gslbiotech/snapgene-viewer/snapgene-viewer.sh'
 alias sqliteman='fork sqliteman'
 alias thunderbird='fork thunderbird'
 alias vlc='fork vlc'
-alias ape='fork tclsh ~/research/software/third_party/ape/AppMain.tcl'
+alias zotero='fork ~/hacking/third_party/zotero/run-zotero.sh'
 
 # The 'pymol' alias doesn't launch the Tk menu that usually starts with pymol, 
 # because it's ugly and I don't use it anyways.  Use the 'pymol-tk' alias if 
