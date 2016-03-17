@@ -8,6 +8,7 @@ if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
         ack                                                 \
         acpi                                                \
         htop                                                \
+        firefox                                             \
         python3-devel                                       \
         python3-scipy                                       \
         python3-matplotlib                                  \
@@ -17,6 +18,9 @@ if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
         qiv                                                 \
         sakura                                              \
         scrot                                               \
+        thunderbird                                         \
+        thunderbird-enigmail                                \
+        thunderbird-lightning-gdata                         \
         vim-enhanced                                        \
         vim-X11                                             \
         xbacklight                                          \
