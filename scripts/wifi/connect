@@ -2,9 +2,11 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-if [ $# != 1 ]; then
+if [ $# = 1 ]; then
+    nmcli device wifi connect $1 
+elif [ $# = 2 ]; then
+    nmcli device wifi connect $1 password $2
+else
     echo "Usage: wifi/connect <SSID>"
     exit 1
 fi
-
-nmcli device wifi connect $1
