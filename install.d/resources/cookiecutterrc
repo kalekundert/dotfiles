@@ -5,4 +5,5 @@ default_context:
 
 abbreviations:
     kxg: https://github.com/kxgames/cookiecutter-kxg.git
-    py: https://github.com/kalekundert/cookiecutter_pylib.git
+    pylib: https://github.com/kalekundert/cookiecutter_pylib.git
+    pyapp: https://github.com/kalekundert/cookiecutter_pyapp.git
