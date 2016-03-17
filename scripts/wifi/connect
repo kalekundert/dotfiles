@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
+
+if [ $# != 1 ]; then
+    echo "Usage: wifi/connect <SSID>"
+    exit 1
+fi
+
+nmcli device wifi connect $1
