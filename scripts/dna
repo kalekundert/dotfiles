@@ -9,8 +9,12 @@ Usage:
     dna gc [<sequence>]
     dna len [<sequence>]
     dna mw [<sequence>] [--ss]
+    dna rand <bp>
 
 """
+
+import numpy as np
+np.random.seed(1000)
 
 def complement(sequence):
     complements = str.maketrans('ACTGactg', 'TGACtgac')
@@ -38,10 +42,22 @@ def molecular_weight(sequence, double_stranded=True):
     else:
         return (a * 313.2) + (t * 304.2) + (c * 289.2) + (g * 329.2) - 62
 
+def random_sequence(num):
+    return ''.join([
+            np.random.choice(list('atcg'), p=[0.3, 0.3, 0.2, 0.2])
+            for x in range(num)
+    ])
+
+
 
 if __name__ == '__main__':
     import docopt
     args = docopt.docopt(__doc__)
+
+    if args['rand']:
+        print(random_sequence(int(args['<bp>'])))
+        raise SystemExit
+
     sequence = args['<sequence>']
 
     if sequence in (None, '-'):
