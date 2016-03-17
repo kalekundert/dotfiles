@@ -9,7 +9,7 @@ if [ -z "$PATH_CONFIGURED" ]; then
         done
     fi
     export PATH="$HOME/.shell/scripts:$PATH"
-    export MANPATH=~/.local/man:$MANPATH
+    export MANPATH="$MANPATH:$HOME/.local/man:$HOME/.local/share/man"
 fi
 
 export EDITOR=vim
@@ -23,7 +23,7 @@ export OPENBOX_EMAIL=thunderbird
 eval $(dircolors ~/.shell/configure.d/resources/colors.ls)
 
 export PYTHONPATH=~/research/software/third_party/imp/build/lib
-export CLASSPATH=.:./bin/:usr/share/java:/home/kale/hacking/projects/android-sdk/tools
+export CLASSPATH=.:./bin/:usr/share/java:/home/kale/hacking/third_party:/home/kale/hacking/projects/android-sdk/tools
 export TEXINPUTS=~/hacking/config/latex:
 export BSTINPUTS=~/hacking/config/latex:
 
