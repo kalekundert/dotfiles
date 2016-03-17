@@ -10,13 +10,12 @@ if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
         htop                                                \
         python3-devel                                       \
         python3-scipy                                       \
-        python-devel                                        \
-        python*-matplotlib                                  \
-        python*-numpy                                       \
-        python*-virtualenv                                  \
+        python3-matplotlib                                  \
+        python3-numpy                                       \
+        python3-pandas                                      \
+        python3-virtualenv                                  \
         qiv                                                 \
         sakura                                              \
-        scipy                                               \
         scrot                                               \
         vim-enhanced                                        \
         vim-X11                                             \
