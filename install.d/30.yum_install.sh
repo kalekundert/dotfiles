@@ -9,6 +9,7 @@ if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
         acpi                                                \
         htop                                                \
         firefox                                             \
+        pithos                                              \
         python3-devel                                       \
         python3-scipy                                       \
         python3-matplotlib                                  \
