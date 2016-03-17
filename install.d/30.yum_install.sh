@@ -7,6 +7,7 @@ if [ -e /etc/fedora-release -a $EUID -ne 0 ]; then
         "@C Development Tools and Libraries"                \
         ack                                                 \
         acpi                                                \
+        htop                                                \
         python3-devel                                       \
         python3-scipy                                       \
         python-devel                                        \
