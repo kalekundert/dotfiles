@@ -68,7 +68,7 @@ if __name__ == '__main__':
     if args['revcomp']:
         print(reverse_complement(sequence))
     if args['gc']:
-        print('{:.1f}%'.format(100 * gc_content(sequence)))
+        print('{:.1%}'.format(gc_content(sequence)))
     if args['mw']:
         print('{:.1f} Da'.format(molecular_weight(sequence, not args['--ss'])))
     if args['len']:
