@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 # Import some useful names.
 import sys, os, re, math
 from itertools import *
@@ -9,9 +7,6 @@ try: from pathlib import Path
 except ImportError: pass
 
 try: from more_itertools import *
-except ImportError: pass
-
-try: import sh
 except ImportError: pass
 
 try: import timerit
@@ -64,6 +59,14 @@ try:
     @lazyobject
     def nx():
         return import_module('networkx')
+
+    @lazyobject
+    def torch():
+        return import_module('torch')
+
+    @lazyobject
+    def nn():
+        return import_module('torch.nn')
 
     @lazyobject
     def df():
