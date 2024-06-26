@@ -1,5 +1,0 @@
-# The fmask flag turns off the executable bit for any files in the mounted 
-# filesystem.  Without this, every file seems to be executable (maybe that's 
-# a limitation of the vfat filesystem?).  So this is nice, because it means 
-# that I don't need to `chmod a-x` everything I copy off the usb drive.
-/dev/sdc1 /home/kale/usb                        vfat    user,rw,sync,fmask=111  0 0 
