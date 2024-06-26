@@ -1,0 +1,42 @@
+" I don't like how event attributes are matched using a regular expression in
+" the default syntax file, because some typos will be highlighted anyways.  To
+" get rid of this behavior, I have to clear the htmlEvent group.
+syn clear htmlEvent
+
+" This pattern simply matches a bracket inside a tag, but it is surprisingly
+" important.  To begin, it allows me to ensure that the tag name always comes
+" right after the bracket and that the two are highlighted the same.  It also
+" indirectly allows me to leave any syntax I don't recognize unchanged, since
+" htmlTag is no longer being used for coloring.
+"
+" One unfortunate side effect of this pattern is that it knocks out javascript
+" highlighting.  This happens because both patterns match at the same place,
+" but this one is defined later and therefore takes priority.  I don't think
+" it's a problem though, because it just encourages moving the javascript code
+" into its own file, which is a good thing.
+"
+" Fuck!  This knocks out syntax highlighting, too.  No good...
+syntax match htmlBracket contained containedin=htmlTag '</\=[a-z]'me=e-1 nextgroup=htmlTagName,htmlSpecialTagName
+syntax match htmlBracket contained '/\=>'
+
+syntax keyword htmlLorem contained containedin=htmlTag Lorem
+hi link htmlLorem Function
+
+" These keywords replace the event attribute highlighting I cleared out
+" earlier.  Instead of recreating the htmlEvent group, I decided to just add
+" keywords to the htmlArg group since the two groups aren't different in any
+" meaningful way.
+syn keyword htmlArg containedin=htmlTag onload onunload onchange
+syn keyword htmlArg containedin=htmlTag onsubmit onreset onselect
+syn keyword htmlArg containedin=htmlTag onblur onfocus onkeydown
+syn keyword htmlArg containedin=htmlTag onkeypress onkeyup onclick
+syn keyword htmlArg containedin=htmlTag ondblclick onmousedown
+syn keyword htmlArg containedin=htmlTag nmousemove onmouseout
+syn keyword htmlArg containedin=htmlTag nmouseover onmouseup
+
+" The htmlTag group matches anything inside a tag that isn't part of another
+" group, so it really shouldn't be highlighted.  Meanwhile, the htmlBracket 
+" and htmlTagName groups are closely related, so they should be colored the 
+" same.
+highlight link htmlTag NONE
+highlight link htmlBracket htmlTagName
