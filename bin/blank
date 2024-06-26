@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-# https://ptspts.blogspot.com/2009/10/screen-blanking-dpms-screen-saver.html
-
-xset +dpms
-

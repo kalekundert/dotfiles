@@ -4,6 +4,6 @@
 [submodule "plugins/agkozak-zsh-prompt"]
 	path = plugins/agkozak-zsh-prompt
 	url = https://github.com/agkozak/agkozak-zsh-prompt.git
-[submodule "openbox"]
-	path = openbox
-	url = git@github.com:kalekundert/openbox_config.git
+[submodule "plugins/zsh-window-title"]
+	path = plugins/zsh-window-title
+	url = https://github.com/olets/zsh-window-title.git

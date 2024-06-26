@@ -1,4 +1,0 @@
-#compdef inkscape
-
-_arguments -s -S \
-    ':SVG File:_files -g "*.svg"'                                                          \

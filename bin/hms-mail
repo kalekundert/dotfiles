@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-
-chromium --app=https://outlook.office365.com/mail/
-

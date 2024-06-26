@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-out=~/av-$(date +%Y%m%d-%H%M%S).log
-echo $out
-avendesora "$@" &> $out

@@ -1,2 +1,4 @@
-typeset -gU PATH path
-path=($HOME/.dotfiles/bin $HOME/.local/bin $path)
+for f in ~/.zprofile.d/*; do
+	source $f
+done
+

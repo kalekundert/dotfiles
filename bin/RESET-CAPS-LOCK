@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-# Turn the caps-lock key back into the caps-lock key.  Normally I keep it as a 
-# control key, but sometimes I accidentally activate caps-lock just before I 
-# switch the key, and then I need a way to get the caps-lock key back to 
-# disable it.
-setxkbmap -option

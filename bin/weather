@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-$BROWSER "http://www.google.com/search?q=weather"
-

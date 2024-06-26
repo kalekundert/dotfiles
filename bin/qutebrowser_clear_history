@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-rm -rf ~/.cache/qutebrowser   
-rm -rf ~/.local/share/qutebrowser/sessions       
-rm -rf ~/.local/share/qutebrowser/webengine

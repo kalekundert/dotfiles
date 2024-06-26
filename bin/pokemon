@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-#fork mgba-qt -4 '/home/kale/personal/games/pokemon/Pokemon - Gold Version (USA, Europe) (SGB Enhanced).gbc'
-fork mgba-qt -4 '/home/kale/personal/games/pokemon/Pokemon - FireRed Version (USA, Europe) (Rev 1).gba'
-

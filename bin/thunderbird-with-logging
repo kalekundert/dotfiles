@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-NSPR_LOG_MODULES=IMAP:4,SMTP:4 NSPR_LOG_FILE=$1 /usr/bin/thunderbird

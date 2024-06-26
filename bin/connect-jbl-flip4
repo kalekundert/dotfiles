@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-
-bluetoothctl power on
-bluetoothctl connect 04:FE:A1:F4:2D:CB

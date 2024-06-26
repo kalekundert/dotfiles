@@ -1,3 +1,6 @@
+# This file configures `readline` (and therefore any application that uses
+# `readline`) to use vi-style key bindings.  Note that `zsh` does *not* use
+# `readline`; it implements its own line editor called `zle`.
 set editing-mode vi
 set keymap vi
 set convert-meta on

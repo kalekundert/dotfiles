@@ -1,3 +1,0 @@
-#!/usr/bin/env sh
-IFS='+'
-firefox "http://www.google.com/search?q=define+$*"
