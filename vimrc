@@ -28,7 +28,6 @@ Plug 'vim-scripts/cmdalias.vim'
 Plug 'Konfekt/FastFold'
 Plug 'aperezdc/vim-template'
 Plug 'jamessan/vim-gnupg'
-Plug 'itchyny/lightline.vim'
 Plug 'markonm/traces.vim'
 Plug 'tpope/vim-commentary'
 
@@ -123,28 +122,6 @@ set completeopt-=preview
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-
-" lightline {{{2
-
-let g:lightline = { 
-    \ 'colorscheme': 'solarized_kbk',
-    \ 'active': {
-    \   'right': [
-    \       [ 'lineinfo' ],
-    \       [ 'percent' ],
-    \       [ 'gutentags', 'filetype' ],
-    \  ]
-    \ },
-    \ 'component_function': {
-    \   'gutentags': 'gutentags#statusline',
-    \   'fugitive': 'LightlineFugitive',
-    \ },
-    \ }
-
-function! LightlineFugitive()
-  let branch = fugitive#head()
-  return len(branch) ? '(' . branch . ')' : ''
-endfunction
 
 " nestedtext {{{2
 
