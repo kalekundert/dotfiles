@@ -158,7 +158,7 @@ alias ymd='\date +"%Y%m%d"'
 
 # ping {{{1
 alias pg='ping google.com'
-alias pa='ping archlinux.org'
+alias pfk='ping fitzkundert.tplinkdns.com'
 
 # misc {{{1
 alias top='\top -u $USER'
