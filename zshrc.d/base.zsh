@@ -5,6 +5,12 @@
 setopt extended_glob
 unsetopt share_history
 
+# Allow tab-completion to match patterns in the middle of file names:
+# https://stackoverflow.com/questions/22600259/zsh-autocomplete-from-the-middle-of-filename
+# https://stackoverflow.com/questions/7906078/how-does-the-matcher-list-arguments-work-in-zsh-zstyle-completion
+# https://zsh.sourceforge.io/Doc/Release/Completion-Widgets.html#Completion-Matching-Control
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
+
 autoload -U compinit && compinit
 export fpath=(~/.dotfiles/zcompdef.d $fpath)
 
