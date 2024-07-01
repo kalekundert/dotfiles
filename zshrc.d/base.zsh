@@ -197,12 +197,14 @@ alias gce='git commit -F $(git root)/.git/COMMIT_EDITMSG -e'
 alias gc!='git commit --amend --no-edit'
 alias gl='git log'
 alias glo='git log --oneline --decorate'
+alias gb='git branch'
 alias gk='git checkout'
 alias gp='git pull'
 alias gpu='git pull && git push'
 alias gpup='git pull && git push && sleep 300 && git pull'
 alias gu='git push'
 alias guf!='git push --force'
+alias grv='git remote -vv'
 
 function gda () {
   git diff $1
