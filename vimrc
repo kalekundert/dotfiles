@@ -185,6 +185,9 @@ augroup fswitch_au_group_kbk
     au BufEnter *.H    let b:fswitchdst = 'C'       | let b:fswitchlocs = 'reg:/include/src/ reg:/include.*/src/ ifrel:|/include/|../src|'
 augroup END
 
+" autoswap {{{2
+set title titlestring=
+
 " misc {{{2
 "map <Tab> :NERDTreeToggle<CR>
 
@@ -311,9 +314,6 @@ set sidescroll=0
 set sidescrolloff=0
 set lazyredraw
 
-"set titlestring=%f
-" The following is apparently needed for the autoswap plugin
-set title titlestring=
 if has('gui_running')
   set background=light
 else
