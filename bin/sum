@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+
+import sys
+
+if len(sys.argv) > 1:
+    summand_strs = sys.argv[1:]
+else:
+    summand_strs = sys.stdin.read().splitlines()
+
+summands = [float(x) for x in summand_strs]
+print(sum(summands))
+
+
+
+
