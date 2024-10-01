@@ -11,15 +11,27 @@ unsetopt share_history
 # https://zsh.sourceforge.io/Doc/Release/Completion-Widgets.html#Completion-Matching-Control
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 
+# When listing tab completions, use the same colors as ls.
+eval $(dircolors ~/.dotfiles/dircolors.in)
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
 autoload -U compinit && compinit
 export fpath=(~/.dotfiles/zcompdef.d $fpath)
+
+autoload zmv
+alias zmv='noglob zmv -W'
+alias zcp='noglob zmv -W -p cp'
+alias zln='noglob zmv -W -p ln'
+
+export EDITOR=vim
 
 alias quit=exit
 alias zsh!='exec env -i HOME="$HOME" TERM="$TERM" zsh'
 alias edrc="$EDITOR ~/.dotfiles/zshrc.d/base.zsh"
 
-# Not necessary to explicitly enable vi-mode.  `zsh` infers that we want it
-# by inspecting the $EDITOR variable.
+# Locally, zsh seems to infer that I want vi-mode by inspecting the `$EDITOR` 
+# variable.  This doesn't seem to work via ssh, though.
+bindkey -v
 
 # Allow backspace to go beyond the point where insert mode started:
 # https://superuser.com/questions/476532/how-can-i-make-zshs-vi-mode-behave-more-like-bashs-vi-mode
@@ -28,7 +40,8 @@ bindkey "^?" backward-delete-char
 source ~/.dotfiles/plugins/agkozak-zsh-prompt/agkozak-zsh-prompt.plugin.zsh
 source ~/.dotfiles/plugins/zsh-window-title/zsh-window-title.plugin.zsh
 
-export AGKOZAK_USER_HOST_DISPLAY=0
+test -z "$SSH_CLIENT"
+export AGKOZAK_USER_HOST_DISPLAY=$?
 export AGKOZAK_BLANK_LINES=1
 export AGKOZAK_PROMPT_CHAR=( '$' '%F{red}$%f' ':' )
 export AGKOZAK_CUSTOM_SYMBOLS=( '⇣⇡' '⇣' '⇡' '+' 'x' '!' '»' '?' )
@@ -60,7 +73,9 @@ function cdd () {
 
 # ls {{{1
 
-eval $(dircolors ~/.dotfiles/dircolors.in)
+# Note: the colors used by `ls` are set by the `dircolors` command in the `zsh` 
+# section.  The reason for doing this is that these colors are needed when 
+# configuring the tab-completion system.
 
 function ls () {
 	/bin/ls $@                                                          \
@@ -138,6 +153,8 @@ alias -g LC='--color=always 2>&1 | less'
 
 
 # find {{{1
+alias fd="noglob fd"
+
 function findn () {
   if [ $# -eq 1 ]; then
     FIND_DIR=.
@@ -174,8 +191,6 @@ alias where='whereis'
 alias len='wc -c'
 
 # vim {{{1
-export EDITOR=vim
-
 alias v=vim
 alias vi=vim
 
@@ -239,6 +254,7 @@ export GPG_TTY=$(tty)
 
 # python {{{1
 export PYTHONSTARTUP=~/.pythonrc
+export RUFF_OUTPUT_FORMAT=grouped
 
 alias py=python3
 alias py2=python2
@@ -250,6 +266,11 @@ alias py-exec-prefix='python -c "import sys; print(sys.exec_prefix)"'
 alias py-site-packages='python -c "import sysconfig; print(sysconfig.get_paths()[\"purelib\"])"'
 
 export fpath=("$(py-site-packages)/argcomplete/bash_completion.d" $fpath)
+
+# These lines suggested by `pyenv init`:
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 imports="from math import *"
 
