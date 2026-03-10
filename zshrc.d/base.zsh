@@ -70,6 +70,12 @@ alias here='cd -P .'
 function cdd () {
   cd $(dirname $1)
 }
+function cda () {
+  cd $(find -maxdepth 1 -type d | sort | head -n1)
+}
+function cdz () {
+  cd $(find -maxdepth 1 -type d | sort | tail -n1)
+}
 
 # ls {{{1
 
