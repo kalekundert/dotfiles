@@ -1,14 +1,36 @@
 #!/usr/bin/env python3
 
-import sys, re
+"""
+Find all packages imported in a Python project.
+
+Usage:
+    find-imports [<path>]... [-x <exclude>]
+
+Arguments:
+    <path>
+        The paths to scan for import statements.  Any directories will be 
+        scanned recursively for python scripts.  By default, the whole current 
+        working directory will be scanned.
+
+Options:
+    -x --exclude <path>
+        A path to a file containing packages to exclude from the output.  
+        Currently, this must be a path to a `pyproject.toml` file.  All 
+        mandatory and optional dependencies will be excluded.
+"""
+
+import docopt
+import re
+import tomllib
+
+from glom import glom, flatten
 from pathlib import Path
 
-imports = set()
-import_patterns = [
+IMPORT_PATTERNS = [
     r'\s*import (\w+)',
     r'\s*from (\w+)(\..*)? import',
 ]
-stdlib = {
+STDLIB = {
         'abc',
         'antigravity',
         'argparse',
@@ -18,6 +40,7 @@ stdlib = {
         'bdb',
         'bisect',
         'bz2',
+        'builtins',
         'calendar',
         'cmd',
         'code',
@@ -181,27 +204,71 @@ stdlib = {
         'zoneinfo',
 }
 
-def iter_paths():
-    for arg in sys.argv[1:] or ['.']:
-        path = Path(arg)
-
+def iter_paths(paths):
+    for path in paths:
         if path.is_dir():
             yield from path.glob('**/*.py')
         else:
             yield path
 
-for path in iter_paths():
-    text = path.read_text()
+def parse_pyproject(path):
+    with open(path, 'rb') as f:
+        pyproject = tomllib.load(f)
 
-    for line in text.splitlines():
-        for pat in import_patterns:
-            if m := re.match(pat, line):
-                lib = m.group(1)
-                if lib not in stdlib:
-                    imports.add(lib)
+    project_name = glom(
+            pyproject,
+            'project.name',
+    )
+    project_deps = glom(
+            pyproject,
+            'project.dependencies',
+            default=[],
+    )
+    optional_deps = glom(
+            pyproject,
+            'project.optional-dependencies.*',
+            default=[],
+    )
 
-for lib in sorted(imports):
-    print(lib)
+    deps = flatten([[project_name], project_deps, *optional_deps])
+    deps = [
+            re.split(r'([~=!<>]\=)|([><])', dep)[0].strip()
+            for dep in deps
+    ]
+    return set(deps)
+
+if __name__ == '__main__':
+    args = docopt.docopt(__doc__)
+
+    if path_args := args['<path>']:
+        paths = [Path(p) for p in path_args]
+    else:
+        paths = [Path.cwd()]
+
+    imports = set()
+
+    for path in iter_paths(paths):
+        if 'env' in str(path):
+            continue
+        try:
+            text = path.read_text()
+        except (FileNotFoundError, UnicodeDecodeError):
+            print(f"error: failed to read: {path}")
+            continue
+
+        for line in text.splitlines():
+            for pat in IMPORT_PATTERNS:
+                if m := re.match(pat, line):
+                    lib = m.group(1)
+                    if lib not in STDLIB:
+                        imports.add(lib)
+
+    if args['--exclude']:
+        deps = parse_pyproject(args['--exclude'])
+        imports -= deps
+
+    for lib in sorted(imports):
+        print(lib)
 
 
 
