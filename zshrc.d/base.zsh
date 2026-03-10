@@ -279,6 +279,7 @@ alias py2=python2
 alias py3=python3
 
 alias ruff='ruff check'
+alias pytest-cov='rm -f .coverage* && python -m coverage run -m pytest && python -m coverage combine && python -m coverage report && python -m coverage html'
 
 alias py-exec-prefix='python -c "import sys; print(sys.exec_prefix)"'
 alias py-site-packages='python -c "import sysconfig; print(sysconfig.get_paths()[\"purelib\"])"'
