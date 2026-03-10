@@ -88,6 +88,7 @@ try:
         from numpy.random import default_rng
         return default_rng()
 
+    from einops import *
 
 except ImportError:
     print("install `lazyasd` for deferred imports")
