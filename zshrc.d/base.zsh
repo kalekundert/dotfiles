@@ -271,6 +271,7 @@ export GPG_TTY=$(tty)
 
 # python {{{1
 export PYTHONSTARTUP=~/.pythonrc
+export PYTHON_BASIC_REPL=1
 export RUFF_OUTPUT_FORMAT=grouped
 
 alias py=python3
