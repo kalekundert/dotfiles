@@ -241,8 +241,19 @@ function gda () {
   fi
 }
 
+function gd1 () {
+  if [ $# -eq 0 ]; then
+    commit='HEAD'
+  else
+    commit=$1
+  fi
+
+  git diff ${commit}~1 ${commit}
+}
+
 # https://stackoverflow.com/questions/19439333/how-do-you-use-an-existing-completion-for-a-function-in-zsh
 compdef _git gda=git-add
+compdef _git gd1=git-diff
 
 # gpg {{{1
 
