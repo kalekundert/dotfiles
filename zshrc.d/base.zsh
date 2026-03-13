@@ -227,6 +227,8 @@ alias gu='git push'
 alias guf!='git push --force'
 alias grv='git remote -vv'
 
+alias wgs='watch --color -n 0.1 git -c color.status=always status'
+
 function gda () {
   git diff $1
 
