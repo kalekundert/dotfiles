@@ -309,6 +309,38 @@ alias px="noglob px"
 alias pxp="noglob pxp"
 alias pxh="noglob pxh"
 
+export POLARS_MAX_THREADS=2
+
+function pl-verbose () {
+  export POLARS_FMT_MAX_COLS=-1
+  export POLARS_FMT_MAX_ROWS=-1
+  export POLARS_TABLE_WIDTH=10000
+  export POLARS_FMT_NUM_LEN=1000
+  export POLARS_FMT_STR_LEN=1000
+  export POLARS_FMT_TABLE_CELL_LIST_LEN=-1
+}
+function pl-verbose-cols () {
+  export POLARS_FMT_MAX_COLS=-1
+  export POLARS_TABLE_WIDTH=10000
+}
+function pl-no-verbose () {
+  unset POLARS_FMT_MAX_COLS
+  unset POLARS_FMT_MAX_ROWS
+  unset POLARS_TABLE_WIDTH
+  unset POLARS_FMT_NUM_LEN
+  unset POLARS_FMT_STR_LEN
+  unset POLARS_FMT_TABLE_CELL_LIST_LEN
+}
+
+# numexpr {{{1
+
+# This environment variable sets the maximum number of threads that numexpr can 
+# use.  Generally it won't use more than 8, as very large inputs are needed for 
+# >8 threads to be faster.  This snippet sets the max to 16---which should be a 
+# generous amount---or the number of available CPUS, whichever is less.
+export NUMEXPR_MAX_THREADS=$((nproc; echo 16) | sort -n | head -1)
+
+
 # c/c++ {{{1
 export CC=$(which clang)
 export CXX=$(which clang++)
