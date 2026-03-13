@@ -55,4 +55,4 @@
 [init]
 	defaultBranch = master
 [credential]
-	helper = cache
+	helper = libsecret
