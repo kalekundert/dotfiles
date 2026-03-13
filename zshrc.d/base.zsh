@@ -357,6 +357,8 @@ alias R='R --no-save'
 alias ,ale=make
 alias make!='make clean && make'
 
+export MAKEFLAGS="--jobs=$(nproc)"
+
 # ninja {{{1
 export NINJA_STATUS="[%f/%t] [-j%r] "
 
