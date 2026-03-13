@@ -274,6 +274,7 @@ export PYTHONSTARTUP=~/.pythonrc
 export PYTHON_BASIC_REPL=1
 export RUFF_OUTPUT_FORMAT=grouped
 
+alias uvpy='uv run python'
 alias py=python3
 alias py2=python2
 alias py3=python3
